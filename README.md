@@ -7,7 +7,6 @@ A simple and elegant web app that lets you **search for any GitHub user** and vi
 ## 🖼️ Preview
 
 ![GitHub Profile Finder Screenshot](./screenshot.png)  
-*(Optional: Add a screenshot of your project here)*
 
 ---
 
@@ -59,13 +58,17 @@ The app fetches data from the GitHub API endpoint:
 ```bash
 https://api.github.com/users/<username>
 ```
+---
 
-💡 Future Improvements
+## 💡 Future Improvements
 
-Add dark/light theme toggle 🌗
-Display recent repositories 🧩
-Improve error handling for API rate limits 🚫
-Add loading animation ⏳
+- Add dark/light theme toggle 🌗
+- Display recent repositories 🧩
+- Improve error handling for API rate limits 🚫
+- Add loading animation ⏳
+
+---
+
 
 🌟 Show your support
 If you like this project, star ⭐ the repository to support its development!
