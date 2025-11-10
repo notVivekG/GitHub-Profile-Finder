@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Profile Finder</title>
+    <link rel="stylesheet" href="./output.css" />
+</head>
+
+<body class="bg-slate-800 text-white m-10">
+    <main class="flex flex-col items-center p-5 gap-y-5">
+        <h1 class="text-3xl font-bold text-center">GitHub Profile Finder</h1>
+        <p class="text-gray-300 text-center max-w-md">
+            Enter a GitHub username to fetch profile information instantly using the GitHub API.
+        </p>
+
+        <div class="join">
+            <div>
+                <label class="input join-item">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </g>
+                    </svg>
+                    <input id="usernameInput" type="text" placeholder="Enter GitHub username" required />
+                </label>
+            </div>
+            <button id="fetchButton" class="btn btn-neutral join-item">Search</button>
+        </div>
+    </main>
+
+    <section id="profileSection" class="flex flex-col justify-center items-center mt-10"></section>
+
+    <script>
+        const usernameInput = document.getElementById('usernameInput');
+        const fetchButton = document.getElementById('fetchButton');
+        const profileSection = document.getElementById('profileSection');
+
+        fetchButton.addEventListener('click', async () => {
+            const username = usernameInput.value.trim();
+            if (!username) {
+                alert('Please enter a GitHub username!');
+                return;
+            }
+
+            const apiUrl = `https://api.github.com/users/${username}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('User not found');
+                const data = await response.json();
+
+
+                profileSection.innerHTML = '';
+
+                const card = document.createElement('a');
+                card.href = data.html_url;
+                card.target = "_blank";
+                card.className =
+                    'h-fit w-fit p-5 m-5 bg-white text-black rounded-xl shadow-xl text-center transition-transform transform hover:scale-105 hover:shadow-2xl duration-300';
+
+                card.innerHTML = `
+                    <img 
+                    src="${data.avatar_url}" 
+                    alt="${data.login}" 
+                    class="w-64 rounded-full mx-auto mb-4 border-4 border-gray-200 shadow-md"
+                    >
+                    <h2 class="text-2xl font-bold ">${data.name || data.login}</h2>
+                    <p class="text-gray-600 text-sm mb-2">@${data.login}</p>
+                    <p class="text-base font-medium text-gray-700">Followers: <strong>${data.followers}</strong></p>
+                    <p class="text-base font-medium text-gray-700">Public Repos: <strong>${data.public_repos}</strong></p>
+                `;
+
+
+                profileSection.appendChild(card);
+            } catch (error) {
+                profileSection.innerHTML = `
+                    <p class="text-red-400 font-medium mt-4">⚠️ ${error.message}</p>
+                `;
+            }
+        });
+            </script>
+            </body>
+
+</html>
