@@ -36,8 +36,8 @@ A simple and elegant web app that lets you **search for any GitHub user** and vi
 
 ### 1️⃣ Clone this repository
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/notVivekG/GitHub-Profile-Finder.git
+cd GitHub-Profile-Finder
 ```
 
 2️⃣ Install dependencies (if using Tailwind CLI)
