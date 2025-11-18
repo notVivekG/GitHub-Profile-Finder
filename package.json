@@ -2,11 +2,13 @@
   "name": "github-profile-finder",
   "version": "1.0.0",
   "scripts": {
-    "build": "tailwind -i input.css -o output.css --minify"
+    "build": "tailwindcss -i input.css -o output.css --minify"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.1.16",
     "tailwindcss": "^4.1.16",
     "daisyui": "^5.4.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.16"
   }
 }
